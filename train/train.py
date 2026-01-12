@@ -1,11 +1,13 @@
 # train_neural_ode.py
+from pathlib import Path
 import jax
 import jax.numpy as jnp
 from jax import random
 import diffrax
 import optax
 
-from data import generate_dataset
+from data.generate_data import generate_dataset
+from utils.util import save_params
 
 
 # -----------------------
@@ -92,12 +94,16 @@ def train_step(params, opt_state, batch, ts):
 # -----------------------
 
 def main():
+
+    chckpt_path = Path(r"C:\Users\BabyBunny\Documents\Repos\LorenzMLSim\checkpoints")
+
     key = random.PRNGKey(0)
     params = init_mlp(key, [3, 128, 128, 3])
     opt_state = optimizer.init(params)
 
     dt = 0.01
     data = generate_dataset()
+    print("Done generating dataset.")
 
     # Curriculum: increasing rollout horizon
     horizons = [10, 25, 50, 100]
@@ -116,6 +122,7 @@ def main():
 
             if epoch % 20 == 0:
                 print(f"Epoch {epoch:03d} | Loss {loss:.6f}")
+                save_params(params, chckpt_path / f"chckpt_hrzn_{horizon}_ep_{epoch}")
 
     print("\nTraining complete.")
 
