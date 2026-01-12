@@ -1,0 +1,12 @@
+[project]
+name = "lorenzmlsim"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "diffrax>=0.7.0",
+    "jax>=0.8.2",
+    "numpy>=2.4.1",
+    "optax>=0.2.6",
+]
