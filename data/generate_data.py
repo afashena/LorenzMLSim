@@ -28,7 +28,7 @@ def generate_trajectory(x0, dt, steps):
 
 
 def generate_dataset(
-    num_trajectories=64,
+    num_trajectories=2000,
     steps=200,
     dt=0.01,
 ):
