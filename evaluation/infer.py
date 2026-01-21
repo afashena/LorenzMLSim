@@ -7,15 +7,17 @@ import diffrax
 import orbax.checkpoint as ocp
 import matplotlib.pyplot as plt
 from data.generate_data import generate_trajectory
-from train.train import solve_ode
 from utils.util import load_params
+from neural_ode import NeuralODE
 
 def main():
     # -----------------------------
     # LOAD MODEL
     # -----------------------------
-    checkpoint_path = Path(r"C:\Users\BabyBunny\Documents\Repos\LorenzMLSim\checkpoints\chckpt_hrzn_(10, 300)_ep_280")  # change if needed
+    checkpoint_path = Path(r"C:\Users\BabyBunny\Documents\Repos\LorenzMLSim\checkpoints\chckpt_hrzn_(100, 200)_ep_180_loss_68.234467")  # change if needed
     params = load_params(checkpoint_path)
+
+    neural_ode = NeuralODE(params=params)
 
     # -----------------------------
     # SIMULATION SETTINGS
@@ -34,7 +36,7 @@ def main():
     # -----------------------------
     # NEURAL ODE PREDICTION
     # -----------------------------
-    pred_traj = solve_ode(params, x0, ts)
+    pred_traj = neural_ode.solve_ode(params, x0, ts)
 
     # -----------------------------
     # ERROR METRIC

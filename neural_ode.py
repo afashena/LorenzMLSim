@@ -14,13 +14,15 @@ import diffrax
 
 
 class NeuralODE:
-    def __init__(self, solver=diffrax.Tsit5(), dt=0.01):
+    def __init__(self, solver=diffrax.Tsit5(), dt=0.01, params=None):
         self.solver = solver
         self.dt = dt
         self.optimizer = optax.adam(1e-3)
+        self.params = params
 
         key = random.PRNGKey(0)
-        self.params = self.init_mlp(key, [3, 128, 128, 3])
+        if self.params is None:
+            self.params = self.init_mlp(key, [3, 128, 128, 3])
         self.opt_state = self.optimizer.init(self.params)
 
     # -------------------------
