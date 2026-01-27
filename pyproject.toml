@@ -3,12 +3,17 @@ name = "lorenzmlsim"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 dependencies = [
     "diffrax>=0.7.0",
+    "ffmpeg>=1.4",
     "jax>=0.8.2",
     "matplotlib>=3.10.8",
     "numpy>=2.4.1",
     "optax>=0.2.6",
     "orbax>=0.1.9",
+    "torch>=2.10.0",
+    "torchaudio>=2.10.0",
+    "torchvision>=0.25.0",
+    "tqdm>=4.67.1",
 ]
