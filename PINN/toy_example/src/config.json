@@ -1,0 +1,11 @@
+{
+    "num_epochs": 10000,
+    "pde_weight": 0.5,
+    "ic_weight": 0.25,
+    "bc_weight": 0.25,
+    "learning_rate": 1e-4,
+    "interior_points": 20000,
+    "boundary_points": 2000,
+    "initial_condition_points": 2000,
+    "nu_bounds": [0.001, 0.1]
+}
