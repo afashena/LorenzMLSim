@@ -1,0 +1,20 @@
+services:
+  physics_ml:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: physics_ml
+    working_dir: /workspace
+    volumes:
+      - C:\Users\BabyBunny\Documents\Repos\LorenzMLSim:/workspace
+    command: sleep infinity
+    environment:
+      - PYTHONUNBUFFERED=1
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    runtime: nvidia
